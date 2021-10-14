@@ -27,7 +27,6 @@ routes.post('/petshops', PetshopController.cadastro);
 routes.get('/servicos', ServicoController.index);
 routes.post('/servicos', ServicoController.store);
 
-routes.get('/servicos/:servico_id/regioes/:regiao_id/petshops', Servico_PetshopController.petshopsServicosRegioes);
 routes.get('/servicos_petshops', Servico_PetshopController.index);
 routes.get('/petshops/:petshop_id/servicos', Servico_PetshopController.listarServicosPetshop);
 routes.post('/petshops/:petshop_id/servicos', Servico_PetshopController.cadastroServicosPetshop);
@@ -37,8 +36,7 @@ routes.get('/regioes', RegiaoController.index);
 routes.post('/regioes', RegiaoController.store);
 
 routes.get('/agendamentos', AgendamentoController.index);
-routes.get('/agendamentos', AgendamentoController.index);
-routes.post('/petshops/:petshop_id/servicos/:servico_id', AgendamentoController.criarAgendaPetshopServico);
+routes.post('/agendamentos', AgendamentoController.store);
 
 routes.post('/login', SessionController.store);
 
@@ -53,9 +51,6 @@ routes.put('/usuarios/:usuario_id/pets/:pet_id', PetController.editarInfoPetDono
 routes.get('/usuarios/:usuario_id/pets/:pet_id', PetController.listarInfoPetDono);
 routes.get('/usuarios/:usuario_id/pets', PetController.listarPetsDono);
 routes.post('/usuarios/:usuario_id/pets', PetController.cadastro);
-
-routes.put('/pets/:pet_id/petshops/:petshop_id/servicos/:servico_id/agendamentos', AgendamentoController.criarAgendamentoPet);
-routes.get('/pets/:pet_id/petshops/:petshop_id/agendamentos', AgendamentoController.agendaPet);
 
 // Upload de arquivos
 routes.post('/files', upload.single('file'), FileController.store);
