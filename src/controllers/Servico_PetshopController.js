@@ -3,6 +3,24 @@ const Servico = require('../models/Servico');
 const Servico_Petshop = require('../models/Servico_Petshop');
 
 module.exports = {
+    async petshopsServicosRegioes(req, res) {
+        const { servico_id, regiao_id } = req.params;
+
+        const petshops = await Servico_Petshop.findAll({
+            where: {
+                servico_id: servico_id,
+            },
+            attributes: ['valor'],
+            include: { 
+                association: 'petshops',
+                where: { regiao_id },
+                attributes: ['nome', 'email', 'contato', 'endereco', 'foto_id']
+            }
+        });
+
+        return res.json(petshops);
+    },
+    
     async petshopsServicos(req, res) {
         const { servico_id } = req.params;
 
